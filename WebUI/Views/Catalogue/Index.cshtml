@@ -1,0 +1,44 @@
+﻿@model WebUI.Models.ViewModelCatalogue
+@using WebUI.Component
+@using WebUI.Helper
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script type="text/javascript">
+    var model = @Html.Raw(Model.ToJSON());
+    $(document).ready(function () {
+        $(".tiptip").tipTip({ maxWidth: "600px", edgeOffset: 10, keepAlive: false });       
+        if(model.PromotedProducts.length == 0)
+            $("#batikPopuler").hide();
+        if(model.LatestProducts.length == 0)
+            $("#latestProducts").hide();
+        if(model.RandomProducts.length == 0)
+            $("#batikKoleksi").hide();
+    });
+</script>
+
+<div style="text-align:right">
+    <font style="font-size:20px;vertical-align:super">Zulkifli Fauzi | Phone: 123456789 | PIN BB: ABCD1234 | YM : </font> <a href="ymsgr:sendIM?zulkifli.fauzi"><img border=0 src="http://opi.yahoo.com/online?u=zulkifli.fauzi&amp;m=g&amp;t=2" /> </a>
+</div>
+
+<div class="banner"></div>
+<div id="catalogue">
+    <div id="batikPopuler">        
+        <h3>Batik Terpopuler</h3>
+        <hr />
+        @Html.Products(Model.PromotedProducts, "promoted", "Rp.")
+    </div>
+    <div id="latestProducts">        
+        <h3>Batik Terbaru</h3>
+        <hr />
+        @Html.Products(Model.LatestProducts, "latest", "Rp.")
+    </div>
+    <div id="batikKoleksi">        
+        <h3>Batik Koleksi</h3>
+        <hr />
+        @Html.Products(Model.RandomProducts, "collection", "Rp.")
+    </div>
+</div>

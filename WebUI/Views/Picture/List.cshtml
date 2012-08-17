@@ -1,0 +1,49 @@
+﻿@model IEnumerable<WebUI.Models.ViewModelPicture>
+@using WebUI.Component
+@{
+    ViewBag.Title = "List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('a').smoothScroll({
+            speed: 1000,
+            easing: 'easeInOutCubic'
+        }); 
+    });
+</script>
+<div>
+    <div style="float:right">@Html.ActionLink("Create New", "Create", new { id = ViewBag.ProductId })</div>
+     <div><h2>Pictures for Product number @ViewBag.ProductNumber</h2></div>
+</div>
+<table>
+    <tr>
+        <th>
+            Url
+        </th>
+        <th>
+            Description
+        </th>
+        <th class="thAction">
+            Action
+        </th>
+    </tr>
+
+@foreach (var item in Model)
+{
+    <tr>
+        <td class="pictureImage">
+            <a rel="lightbox" href="@Html.DisplayFor(modelItem => item.Url)" title="@Html.DisplayFor(modelItem => item.Description)"><img src="@Html.DisplayFor(modelItem => item.Url)" width="72" height="72" alt="" /></a>
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td style="text-align:center">
+            @Html.ActionImage("Edit", "Picture", new { id = item.Id }, "~/Content/Images/edit.png", "Edit") 
+            @Html.ActionImage("Delete", "Picture", new { id = item.Id }, "~/Content/Images/delete.png", "Delete")
+        </td>
+    </tr>
+}
+
+</table>

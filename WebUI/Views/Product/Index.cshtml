@@ -1,0 +1,96 @@
+﻿@model IEnumerable<WebUI.Models.ViewModelProduct>
+@using WebUI.Component
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(".tiptip").tipTip({ maxWidth: "600px", edgeOffset: 10, keepAlive: false });
+        $('.currency').formatCurrency({ symbol: "Rp" });
+    });
+</script>
+<div>
+    <div style="float:right">@Html.ActionLink("Create New", "Create")</div>
+     <div><h2>Products List</h2></div>
+</div>
+<table>
+    <tr>
+        <th>
+            Name
+        </th>
+        <th>
+            Number
+        </th>
+        <th>
+            Description
+        </th>
+        <th>
+            Price
+        </th>
+        <th>
+            Size
+        </th>
+        <th>
+            Model
+        </th>
+        <th>
+            Type
+        </th>
+        <th>
+            Origin
+        </th>
+        <th>
+            Promoted
+        </th>
+        <th>
+            Date Entered
+        </th>
+        <th class="thAction">
+            Action
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Number)
+        </td>
+        <td>
+            @Html.TipTip(item.Description)
+        </td>
+        <td class="currency">
+            @Html.DisplayFor(modelItem => item.Price)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SizeName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ModelName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TypeName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OriginName)
+        </td>
+        <td style="text-align:center">
+            @Html.DisplayFor(modelItem => item.Promoted)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Date)
+        </td>
+        <td style="text-align:center">
+            @Html.ActionImage("Edit", "Product", new { id = item.Id }, "~/Content/Images/edit.png", "Edit") 
+            @Html.ActionImage("Delete", "Product", new { id = item.Id }, "~/Content/Images/delete.png", "Delete")
+            @Html.ActionImage("List", "Picture", new { id = item.Id }, "~/Content/Images/picture.png", "Add Pictures")
+        </td>
+    </tr>
+}
+
+</table>

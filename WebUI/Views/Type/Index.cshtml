@@ -1,0 +1,36 @@
+﻿@model IEnumerable<WebUI.Models.ViewModelType>
+@using WebUI.Component
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div>
+    <div style="float:right">@Html.ActionLink("Create New", "Create")</div>
+     <div><h2>Types List</h2></div>
+</div>
+<table>
+    <tr>
+        <th>
+            Name
+        </th>
+        <th class="thAction">
+            Action
+        </th>
+    </tr>
+
+@foreach (var item in Model)
+{
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td style="text-align:center">
+            @Html.ActionImage("Edit", "Type", new { id = item.Id }, "~/Content/Images/edit.png", "Edit") 
+            @Html.ActionImage("Delete", "Type", new { id = item.Id }, "~/Content/Images/delete.png", "Delete")
+        </td>
+    </tr>
+}
+
+</table>

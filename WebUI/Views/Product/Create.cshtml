@@ -1,0 +1,85 @@
+﻿@model WebUI.Models.ViewModelProduct
+@using WebUI.Component
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Create Product</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary()
+    <fieldset>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Name)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Name)
+            @Html.ValidationMessageFor(model => model.Name)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Number)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Number)
+            @Html.ValidationMessageFor(model => model.Number)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Description)
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.Description,3,40,null)
+            @Html.ValidationMessageFor(model => model.Description)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Price)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Price)
+            @Html.ValidationMessageFor(model => model.Price)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Size_SizeId)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListSingleLine("Size_SizeId", ViewData["Sizes"] as List<SelectListItem>, null)
+            @Html.ValidationMessageFor(model => model.Size_SizeId)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Model_ModelId)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListSingleLine("Model_ModelId", ViewData["Models"] as List<SelectListItem>, null)
+            @Html.ValidationMessageFor(model => model.Model_ModelId)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Type_TypeId)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListSingleLine("Type_TypeId", ViewData["Types"] as List<SelectListItem>, null)
+            @Html.ValidationMessageFor(model => model.Type_TypeId)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Origin_OriginId)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListSingleLine("Origin_OriginId", ViewData["Origins"] as List<SelectListItem>, null)
+            @Html.ValidationMessageFor(model => model.Origin_OriginId)
+        </div>
+        <p>
+            <input type="submit" value="Create" class="cancel"  />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
